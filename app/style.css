@@ -1,7 +1,175 @@
-body { font-family: Arial, sans-serif; margin: 24px; color: #222; }
-header { display: flex; justify-content: space-between; align-items: baseline; }
-.controls { display: flex; gap: 16px; margin: 12px 0; align-items: center; }
-.import input { font-size: 12px; }
-table { border-collapse: collapse; width: 100%; }
-th, td { border-bottom: 1px solid #ddd; padding: 6px 8px; text-align: left; vertical-align: top; white-space: pre-line; }
-th { background: #f2f2f2; }
+/* Hallmark · v2.0.0 · theme: Leonida dusk ledger (custom) · genre: app screen · shape: ledger */
+/* Critique: the sunset progress horizon is the one memorable element; the list stays a quiet working surface. */
+/* Waive 13: the 55-row checklist is the tool itself, not page copy: the header stays under 80 words. */
+:root {
+  --ink: #100c18;
+  --surface: #251c33;
+  --raised: #2d2439;
+  --line: #413452;
+  --paper: #f3ecdd;
+  --muted: #b7abc7;
+  --amber: #ffb454;
+  --pink: #ff6b9d;
+  --teal: #57c9b8;
+  --platinum: #ece7f5;
+  --gold: #ffc94d;
+  --silver: #cfcfda;
+  --bronze: #d08a4e;
+  --radius: 10px;
+  --measure: 1080px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.wrap { max-width: var(--measure); margin: 0 auto; padding: 0 24px; }
+h1, h2, h3 { overflow-wrap: break-word; min-width: 0; }
+h1 { font-size: 34px; line-height: 1.1; letter-spacing: -0.02em; margin: 0; font-weight: 800; text-wrap: balance; }
+h2 { font-size: 21px; line-height: 1.25; margin: 0 0 12px; font-weight: 800; letter-spacing: -0.01em; text-wrap: balance; }
+h3 { font-size: 16px; margin: 20px 0 8px; font-weight: 700; }
+p { margin: 0 0 12px; }
+a { color: var(--amber); }
+a:hover { color: var(--pink); }
+a:active, button:active { opacity: 0.75; }
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.hero { background: var(--surface); color: var(--paper); border-bottom: 1px solid var(--line); padding: 36px 0 28px; }
+.lede { color: var(--muted); font-size: 17px; margin: 12px 0 20px; }
+.progress-line {
+  position: relative;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--raised);
+  overflow: hidden;
+}
+.progress-line #progressFill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: linear-gradient(90deg, var(--amber), var(--pink));
+  transition: transform 300ms ease;
+}
+.progress-line #progressMark {
+  position: absolute;
+  right: 0;
+  top: -4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--platinum);
+  background: var(--ink);
+}
+.progress-text { margin: 12px 0 0; color: var(--muted); }
+.progress-text strong { color: var(--paper); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
+.actions button, .import-label {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--paper);
+  border-radius: 8px;
+  padding: 8px 16px;
+}
+.actions button:hover, .import-label:hover { border-color: var(--amber); }
+.actions button.primary { background: var(--amber); border-color: var(--amber); color: var(--ink); font-weight: 700; }
+:disabled { opacity: 0.5; cursor: not-allowed; }
+.import-label input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+main { padding: 28px 0 48px; }
+.roadmap { margin-bottom: 28px; }
+.stages { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.stages li {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.stage-num { color: var(--amber); font-weight: 700; font-size: 13px; }
+.stage-name { font-weight: 800; font-size: 17px; }
+.stage-note { color: var(--muted); font-size: 14px; }
+.stage-count { color: var(--paper); font-weight: 700; font-size: 13px; margin-top: auto; }
+.controls { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-bottom: 8px; }
+.kinds { display: flex; flex-wrap: wrap; gap: 8px; }
+.kinds button {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+.kinds button.active { background: var(--amber); border-color: var(--amber); color: var(--ink); font-weight: 700; }
+.tools { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+.search-label, .check-label { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 14px; }
+.search-label input {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: var(--paper);
+  width: 200px;
+}
+.check-label input { accent-color: var(--amber); width: 16px; height: 16px; }
+.list-meta { color: var(--muted); font-size: 14px; margin: 12px 0; }
+.trophies { list-style: none; margin: 0; padding: 0; }
+.trophies > li { border-bottom: 1px solid var(--line); }
+.trophy-row { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 12px; align-items: start; padding: 16px 4px; }
+.trophy-row input[type="checkbox"] { accent-color: var(--teal); width: 18px; height: 18px; margin-top: 4px; }
+.trophy-main { min-width: 0; }
+.trophy-name { font-weight: 700; font-size: 16px; overflow-wrap: break-word; }
+.trophy-name .missable-tag { color: var(--pink); font-weight: 700; font-size: 13px; margin-left: 8px; }
+.trophy-desc { color: var(--muted); margin: 2px 0 0; }
+.trophy-kinds { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 8px; }
+.kind-tag { font-size: 12px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 4px 8px; }
+.grade-chip { font-size: 12px; font-weight: 700; border-radius: 999px; padding: 4px 8px; white-space: nowrap; }
+.grade-platinum { background: var(--platinum); color: var(--ink); }
+.grade-gold { background: var(--gold); color: var(--ink); }
+.grade-silver { background: var(--silver); color: var(--ink); }
+.grade-bronze { background: var(--bronze); color: var(--ink); }
+.trophy-row.earned .trophy-name { color: var(--teal); }
+.trophy-row.earned .trophy-desc { text-decoration: line-through; }
+.detail-toggle {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  margin: 0 0 16px 40px;
+}
+.detail-toggle:hover { border-color: var(--amber); color: var(--paper); }
+.detail { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; margin: 0 0 16px 40px; }
+.detail p { margin: 0 0 12px; }
+.detail .guide-label { font-weight: 700; }
+.detail .source-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.detail .source-list a { font-size: 13px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; text-decoration: none; }
+.detail .source-list a:hover { border-color: var(--amber); }
+.detail .unknown { color: var(--amber); font-weight: 700; }
+.empty { color: var(--muted); padding: 24px 0; }
+.notes { margin-top: 40px; border-top: 1px solid var(--line); padding-top: 24px; }
+.notes p { color: var(--muted); max-width: 72ch; }
+.sources { margin: 0 0 12px; padding-left: 20px; color: var(--muted); }
+.sources li { margin-bottom: 4px; }
+.fineprint { font-size: 13px; }
+@media (max-width: 720px) {
+  h1 { font-size: 27px; }
+  .stages { grid-template-columns: minmax(0, 1fr); }
+  .trophy-row { grid-template-columns: 28px minmax(0, 1fr); }
+  .grade-chip { grid-column: 2; justify-self: start; }
+  .detail, .detail-toggle { margin-left: 0; }
+  .search-label input { width: 160px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .progress-line #progressFill { transition: none; }
+}

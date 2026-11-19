@@ -3,23 +3,69 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GTA VI trophy checklist</title>
+<link rel="icon" href="data:,">
+<meta name="description" content="An offline guide to all 55 GTA VI PlayStation trophies, each with a cited guide, a road to the platinum, and a checklist that saves in your browser.">
+<title>Leonida Ledger: GTA VI trophy guide and tracker</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <h1>GTA VI trophy checklist</h1>
-  <p id="progress">0 of 55 earned</p>
+<header class="hero">
+  <div class="wrap">
+    <h1>Every GTA VI trophy, tracked to platinum</h1>
+    <p class="lede">Fifty-five trophies, each with a cited guide and a checklist that saves.</p>
+    <div class="progress" role="group" aria-label="Progress">
+      <div class="progress-line"><span id="progressFill"></span><span id="progressMark" title="Platinum"></span></div>
+      <p class="progress-text"><strong id="earnedCount">0 of 55 earned</strong> <span id="gradeCounts"></span></p>
+    </div>
+    <div class="actions">
+      <button id="exportBtn" type="button" class="primary">Export progress</button>
+      <label class="import-label">Import progress <input id="importFile" type="file" accept="application/json,.json"></label>
+      <button id="resetBtn" type="button">Reset checklist</button>
+    </div>
+  </div>
 </header>
-<div class="controls">
-  <label>Grade <select id="grade"><option value="all">All</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option></select></label>
-  <button id="export" type="button">Export progress</button>
-  <label class="import">Import progress <input id="import" type="file" accept="application/json"></label>
-</div>
-<table>
-  <thead><tr><th>Earned</th><th>Trophy</th><th>Grade</th><th>How to get it</th></tr></thead>
-  <tbody id="rows"></tbody>
-</table>
+
+<main class="wrap">
+  <section class="roadmap" aria-label="Road to the platinum">
+    <h2>The road to the platinum</h2>
+    <ol class="stages">
+      <li data-stage="1"><span class="stage-num">Stage 1</span><span class="stage-name">Play the story</span><span class="stage-note">Chapters 1 to 5, about 60 to 80 hours. Do the Chapter 1 meditation before the chapter ends.</span><span class="stage-count" id="stageCount1"></span></li>
+      <li data-stage="2"><span class="stage-num">Stage 2</span><span class="stage-name">The 100% checklist</span><span class="stage-note">After the credits, about 100 hours. Scan, study, rob and race until the checklist clears.</span><span class="stage-count" id="stageCount2"></span></li>
+      <li data-stage="3"><span class="stage-num">Stage 3</span><span class="stage-name">Cleanup</span><span class="stage-note">About 10 hours. The last challenges, the last actions, and the five trophies still unconfirmed at launch.</span><span class="stage-count" id="stageCount3"></span></li>
+    </ol>
+  </section>
+
+  <section class="controls" aria-label="Filters">
+    <div class="kinds" id="kindFilters" role="group" aria-label="Filter by kind"></div>
+    <div class="tools">
+      <label class="search-label">Search <input id="search" type="search" placeholder="Name or description" autocomplete="off"></label>
+      <label class="check-label"><input id="earnedOnly" type="checkbox"> Earned only</label>
+      <label class="check-label"><input id="spoilerToggle" type="checkbox" checked> Hide story spoilers</label>
+    </div>
+  </section>
+
+  <section class="list-wrap" aria-label="Trophy list">
+    <p class="list-meta" id="listMeta"></p>
+    <noscript><p class="empty">This checklist needs JavaScript to load its trophy list. The list itself is in data/trophies.json, beside this page.</p></noscript>
+    <ul class="trophies" id="trophyList"></ul>
+    <p class="empty" id="emptyState" hidden>No trophies match these filters.</p>
+  </section>
+
+  <section class="notes" aria-label="About this guide">
+    <h2>About this guide</h2>
+    <p>Names, descriptions and grades are the official PlayStation list, as Exophase and PSNProfiles carry it. Every guide is written for this page in our own words, and every specific fact cites its source beside the trophy. Where no guide has confirmed a trigger yet, the guide says so instead of guessing.</p>
+    <p>One trophy can be missed: Positive Mental Attitude, if you skip the Chapter 1 balcony meditation. There is no mission replay, so keep a manual save at the start of every chapter and one before the final mission. Cheats switch trophies off. There are no online trophies. All 55 are earned in single-player.</p>
+    <p>Your ticks live only in this browser, under localStorage. Export them to a file to keep a backup, and import the file to bring them back.</p>
+    <h3>Sources</h3>
+    <ul class="sources">
+      <li><a href="https://www.powerpyx.com/gta-6-grand-theft-auto-vi-trophy-guide-roadmap/">PowerPyx: GTA 6 Trophy Guide and Roadmap</a></li>
+      <li><a href="https://outputlag.com/guides/gta-6-trophy-list/">Output Lag: GTA 6 Trophy List</a></li>
+      <li><a href="https://gtasix.how/trophies/">GTA Six How: GTA 6 Trophies and Achievements</a>, from the lists GamesRadar+ and PC Gamer published</li>
+      <li>Exophase and PSNProfiles: the official trophy list</li>
+    </ul>
+    <p class="fineprint">An unofficial fan guide. Grand Theft Auto and GTA are trademarks of Take-Two Interactive; this guide uses no Rockstar logo, artwork or game images. Works offline: it loads only its own files.</p>
+  </section>
+</main>
 <script type="module" src="app.js"></script>
 </body>
 </html>
