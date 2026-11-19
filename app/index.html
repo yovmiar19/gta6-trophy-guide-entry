@@ -3,12 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#100c18">
 <link rel="icon" href="data:,">
 <meta name="description" content="An offline guide to all 55 GTA VI PlayStation trophies, each with a cited guide, a road to the platinum, and a checklist that saves in your browser.">
 <title>Leonida Ledger: GTA VI trophy guide and tracker</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a class="skip-link" href="#trophyList">Skip to the trophy list</a>
 <header class="hero">
   <div class="wrap">
     <h1>Every GTA VI trophy, tracked to platinum</h1>
@@ -38,16 +40,16 @@
   <section class="controls" aria-label="Filters">
     <div class="kinds" id="kindFilters" role="group" aria-label="Filter by kind"></div>
     <div class="tools">
-      <label class="search-label">Search <input id="search" type="search" placeholder="Name or description" autocomplete="off"></label>
+      <label class="search-label">Search <input id="search" name="search" type="search" placeholder="e.g. Positive Mental Attitude…" autocomplete="off"></label>
       <label class="check-label"><input id="earnedOnly" type="checkbox"> Earned only</label>
       <label class="check-label"><input id="spoilerToggle" type="checkbox" checked> Hide story spoilers</label>
     </div>
   </section>
 
   <section class="list-wrap" aria-label="Trophy list">
-    <p class="list-meta" id="listMeta"></p>
+    <p class="list-meta" id="listMeta" aria-live="polite"></p>
     <noscript><p class="empty">This checklist needs JavaScript to load its trophy list. The list itself is in data/trophies.json, beside this page.</p></noscript>
-    <ul class="trophies" id="trophyList"></ul>
+    <ul class="trophies" id="trophyList" tabindex="-1"></ul>
     <p class="empty" id="emptyState" hidden>No trophies match these filters.</p>
   </section>
 

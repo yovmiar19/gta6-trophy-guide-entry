@@ -21,6 +21,7 @@
 }
 * { box-sizing: border-box; }
 html, body { overflow-x: clip; }
+html { color-scheme: dark; }
 body {
   margin: 0;
   background: var(--ink);
@@ -39,7 +40,20 @@ a { color: var(--amber); }
 a:hover { color: var(--pink); }
 a:active, button:active { opacity: 0.75; }
 button, input, select { font: inherit; color: inherit; }
-button { cursor: pointer; }
+button { cursor: pointer; touch-action: manipulation; }
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -48px;
+  background: var(--amber);
+  color: var(--ink);
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  z-index: 10;
+}
+.skip-link:focus { top: 16px; }
 :focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
 .hero { background: var(--surface); color: var(--paper); border-bottom: 1px solid var(--line); padding: 36px 0 28px; }
 .lede { color: var(--muted); font-size: 17px; margin: 12px 0 20px; }
@@ -69,7 +83,7 @@ button { cursor: pointer; }
   border: 2px solid var(--platinum);
   background: var(--ink);
 }
-.progress-text { margin: 12px 0 0; color: var(--muted); }
+.progress-text { margin: 12px 0 0; color: var(--muted); font-variant-numeric: tabular-nums; }
 .progress-text strong { color: var(--paper); }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 16px; }
 .actions button, .import-label {
@@ -123,7 +137,7 @@ main { padding: 28px 0 48px; }
 .check-label input { accent-color: var(--amber); width: 16px; height: 16px; }
 .list-meta { color: var(--muted); font-size: 14px; margin: 12px 0; }
 .trophies { list-style: none; margin: 0; padding: 0; }
-.trophies > li { border-bottom: 1px solid var(--line); }
+.trophies > li { border-bottom: 1px solid var(--line); content-visibility: auto; }
 .trophy-row { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 12px; align-items: start; padding: 16px 4px; }
 .trophy-row input[type="checkbox"] { accent-color: var(--teal); width: 18px; height: 18px; margin-top: 4px; }
 .trophy-main { min-width: 0; }

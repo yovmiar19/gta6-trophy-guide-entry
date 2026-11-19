@@ -178,6 +178,7 @@ function buildRow(trophy) {
   row.className = 'trophy-row' + (earned ? ' earned' : '');
   const check = document.createElement('input');
   check.type = 'checkbox';
+  check.id = 'earned-' + trophy.id;
   check.checked = earned;
   check.setAttribute('aria-label', 'Mark ' + trophy.name + ' as earned');
   check.addEventListener('change', () => {
@@ -191,8 +192,9 @@ function buildRow(trophy) {
   row.appendChild(check);
   const main = document.createElement('div');
   main.className = 'trophy-main';
-  const name = document.createElement('div');
+  const name = document.createElement('label');
   name.className = 'trophy-name';
+  name.htmlFor = 'earned-' + trophy.id;
   name.textContent = hidden ? 'Hidden story trophy' : trophy.name;
   if (trophy.missable) {
     const tag = document.createElement('span');
